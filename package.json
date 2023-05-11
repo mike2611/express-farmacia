@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mike2611/express-farmacia/issues"
   },
-  "homepage": "https://github.com/mike2611/express-farmacia#readme"
+  "homepage": "https://github.com/mike2611/express-farmacia#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
