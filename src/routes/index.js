@@ -1,5 +1,5 @@
 const empleado = require('./empleado');
 
-export default {
+module.exports = {
     empleado,
-}
+};

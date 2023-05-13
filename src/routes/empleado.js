@@ -31,8 +31,14 @@ router.delete('/:id', (req, res) => {
 })
 
 //Añadir a un empleado
-router.get('/', (req,res) => {
+router.post('/', (req,res) => {
     let newEmpleado = req.body;
+
+    if (Object.keys(newEmpleado).length === 0) {
+        res.status(400).json({ error: "Request body is empty" });
+        return;
+    }
+
     let sql = 'INSERT INTO tbl_empleado SET ?';
     db.query(sql, newEmpleado, (err, result) => {
         if(err) throw err;
@@ -43,9 +49,17 @@ router.get('/', (req,res) => {
 //Editar a un empleado
 router.put('/:id', (req, res) => {
     let updateEmpleado = req.body;
+
+    if (Object.keys(updateEmpleado).length === 0) {
+        res.status(400).json({ error: "Request body is empty" });
+        return;
+    }
+    
     let sql = 'UPDATE tbl_empleado SET ? WHERE id = ?';
     db.query(sql, [updateEmpleado, req.params.id], (err, result) => {
         if(err) throw err;
         res.json(result);
     })
 });
+
+module.exports = router;

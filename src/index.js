@@ -1,10 +1,10 @@
 const express = require('express');
-const empleadoRoutes = require('./routes/empleado');
+const routes = require('./routes');
 
 const app = express();
 app.use(express.json());
 
-app.use('/empleado', empleadoRoutes);
+app.use('/empleados', routes.empleado);
 
 const port = 3000;
 
