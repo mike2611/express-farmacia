@@ -4,7 +4,7 @@ const db = require('../database');
 
 async function validacionAñadirActualizar(empleado, res) {
     if (Object.keys(empleado).length === 0) {
-        res.status(400).json({ error: "Request body is empty" });
+        res.status(400).json({ error: "El body esta vacio" });
         return false;
     }
     
@@ -14,7 +14,7 @@ async function validacionAñadirActualizar(empleado, res) {
     
     // Si el resultado está vacío, entonces el perfil no existe
     if(rows.length === 0){
-      res.status(400).send('El perfil proporcionado no existe');
+      res.status(400).json({ error: "El perfil proporcionado no existe" });
       return false;
     }
 
@@ -49,7 +49,7 @@ router.delete('/:id', (req, res) => {
 });
 
 //Añadir a un empleado
-router.post('/', (req,res) => {
+router.post('/', async (req,res) => {
     let newEmpleado = req.body;
 
     if (!await validacionAñadirActualizar(newEmpleado, res)) return;
@@ -62,7 +62,7 @@ router.post('/', (req,res) => {
 });
 
 //Editar a un empleado
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
     let updateEmpleado = req.body;
 
     if (!await validacionAñadirActualizar(updateEmpleado, res)) return;
