@@ -9,6 +9,7 @@ app.use(express.json());
 app.use('/empleados', routes.empleado);
 app.use('/perfiles', routes.perfil);
 app.use('/productos', routes.inventario);
+app.use('/venta', routes.venta);
 
 const port = 3000;
 
