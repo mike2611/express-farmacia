@@ -23,7 +23,8 @@ async function validacionAñadirActualizar(empleado, res) {
 
 //GET todos los empleados
 router.get('/', (req, res) => {
-    let sql = 'SELECT * FROM tbl_empleado';
+    // let sql = 'SELECT * FROM tbl_empleado';
+    let sql = "SELECT A.id AS id, CONCAT(A.nombre, ' ', A.paterno, ' ', A.materno) AS nombre, B.descripcion AS perfil, A.usuario AS usuario FROM tbl_empleado A INNER JOIN tbl_perfil B ON A.id_perfil = B.id";
     db.query(sql, (err, results) => {
         if(err) throw err;
         res.json(results);
