@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 
     if(!await validacionAñadirActualizar(newProveedor, res)) return;
 
-    const sql =  'INSERT INTO tbl_proveedor SET  ?';
+    const sql =  'INSERT INTO tbl_proveedor SET ?';
     db.query(sql, newProveedor, (err, result) => {
        if(err) throw err; 
        res.json(result);
@@ -59,7 +59,7 @@ router.put('/:id', async (req, res) => {
 
     if(!await validacionAñadirActualizar(updateProveedor, res)) return;
 
-    const sql =  'UPDATE tbl_proveedor SET ? WHERE ?';
+    const sql =  'UPDATE tbl_proveedor SET ? WHERE id = ?';
     db.query(sql, [updateProveedor, req.params.id], (err, result) => {
        if(err) throw err; 
        res.json(result);
