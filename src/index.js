@@ -11,6 +11,7 @@ app.use('/perfiles', routes.perfil);
 app.use('/productos', routes.inventario);
 app.use('/ventas', routes.venta);
 app.use('/proveedores', routes.proveedor);
+app.use('/contratos', routes.contrato);
 
 const port = 3000;
 
