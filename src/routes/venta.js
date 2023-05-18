@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database');
 
-//TODO: agregar validacion por si la cantidad del producto supera las que hay en inventario
-
 //Generar Venta
 router.post('/', async (req, res) => {
     let {id_empleado, fecha_venta, productos } = req.body;
@@ -20,10 +18,21 @@ router.post('/', async (req, res) => {
     for(let producto of productos) {
         let { id_producto, cantidad } = producto;
 
-        //Se obtiene el precio del producto
-        sql = 'SELECT precio_venta FROM tbl_inventario WHERE id = ?';
+
+        //Se obtiene el precio del producto y la cantidad en el inventario
+        sql = 'SELECT stock, precio_venta FROM tbl_inventario WHERE id = ?';
         let result = await db.promise().query(sql, id_producto);
-        let precio_venta = result[0][0].precio_venta;
+        let {stock , precio_venta} = result[0][0];
+
+        if(cantidad > stock) {
+            res.status(400).json({error: "No existe suficiente inventario para completar su orden"});
+            return;
+        }
+
+        // Actualizar el stock en el inventario
+        let newStock = stock - cantidad;
+        sql = 'UPDATE tbl_inventario SET stock = ? WHERE id = ?';
+        await db.promise().query(sql, [newStock, id_producto]);
 
         //Verificar si la cantidad del producto es 3 o más para aplicar el descuento
         let ap_descuento = cantidad >= 3 ? 1 : 0;
@@ -54,7 +63,7 @@ router.get('/', (req, res) => {
     });
 });
 
-//GET Venta por Id donde se obtienen los detalles de la venta con
+//GET Venta por Id donde se obtienen los detalles de la venta
 router.get('/:id', async (req,res) => {
     //Regresa una venta con un id en  especifico
     let idVenta = req.params.id;
