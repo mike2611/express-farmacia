@@ -42,4 +42,13 @@ router.put('/:id', (req, res) => {
     });
 })
 
+//Eliminar un contrato por id
+router.delete('/:id', (req, res) => {
+    const sql =  'DELETE FROM tbl_contrato WHERE id = ?';
+    db.query(sql, req.params.id, (err, result) => {
+       if(err) throw err; 
+       res.json(result);
+    });
+})
+
 module.exports  = router;

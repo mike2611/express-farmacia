@@ -66,4 +66,13 @@ router.put('/:id', async (req, res) => {
     });
 })
 
+//Eliminar un proveedir por id
+router.delete('/:id', (req, res) => {
+    const sql =  'DELETE FROM tbl_proveedor WHERE id = ?';
+    db.query(sql, req.params.id, (err, result) => {
+       if(err) throw err; 
+       res.json(result);
+    });
+})
+
 module.exports  = router;
