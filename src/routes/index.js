@@ -4,6 +4,9 @@ const inventario = require('./inventario');
 const venta = require('./venta');
 const proveedor = require('./proveedor');
 const contrato = require('./contrato');
+const pais = require('./pais');
+const estado = require('./estado');
+const municipio = require('./municipio');
 
 module.exports = {
     empleado,
@@ -11,5 +14,8 @@ module.exports = {
     inventario,
     venta,
     proveedor,
-    contrato
+    contrato,
+    pais,
+    estado,
+    municipio
 };

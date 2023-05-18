@@ -12,6 +12,9 @@ app.use('/productos', routes.inventario);
 app.use('/ventas', routes.venta);
 app.use('/proveedores', routes.proveedor);
 app.use('/contratos', routes.contrato);
+app.use('/paises', routes.pais);
+app.use('/estados', routes.estado);
+app.use('/municipios', routes.municipio);
 
 const port = 3000;
 
