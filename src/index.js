@@ -9,7 +9,8 @@ app.use(express.json());
 app.use('/empleados', routes.empleado);
 app.use('/perfiles', routes.perfil);
 app.use('/productos', routes.inventario);
-app.use('/venta', routes.venta);
+app.use('/ventas', routes.venta);
+app.use('/proveedores', routes.proveedor);
 
 const port = 3000;
 
