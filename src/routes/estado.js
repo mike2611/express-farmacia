@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 //GET un pais por id
 router.get('/:id', (req, res) => {
-    const sql = 'SELECT * FROM tbl_estado WHERE id = ?';
+    const sql = 'SELECT * FROM tbl_estado WHERE pais = ?';
     db.query(sql, req.params.id, (err, result) => {
         if(err) throw err;
         res.json(result);
