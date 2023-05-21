@@ -40,6 +40,17 @@ router.get('/:id', (req, res) => {
     })
 });
 
+// consulta login
+router.get('/usuario/:usuario/:clave', (req, res) => {
+    let usuario = req.params.usuario;
+    let clave = req.params.clave;
+    let sql = `SELECT * FROM tbl_empleado WHERE usuario = '${usuario}' AND clave = '${clave}'`;
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.json(result);
+    });
+});
+
 //Eliminar a un empleado
 router.delete('/:id', (req, res) => {
     let sql = `DELETE FROM tbl_empleado WHERE id = ${req.params.id}`;

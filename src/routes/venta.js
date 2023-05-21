@@ -56,7 +56,18 @@ router.post('/', async (req, res) => {
 
 //GET Ventas
 router.get('/', (req, res) => {
-    let sql = 'SELECT * FROM tbl_venta';
+    // let sql = 'SELECT * FROM tbl_venta';
+    let sql = "SELECT A.id AS id,  CONCAT(B.nombre, ' ', B.paterno, ' ', B.materno) AS empleado, A.fecha_venta AS venta, A.total_venta AS total FROM tbl_venta A INNER JOIN tbl_empleado B ON A.id_empleado = B.id";
+    db.query(sql,(err, result) => {
+        if(err) throw err;
+        res.json(result);
+    });
+});
+
+// GET detalle de ventas //
+router.get('/detalle/:id', (req, res) => {
+    // let sql = 'SELECT * FROM tbl_venta';
+    let sql = `SELECT A.id AS id, CONCAT(B.nombre, ' - ', B.descripcion) AS producto, A.cantidad AS cantidad, B.precio_venta AS precio FROM tbl_venta_detalle A INNER JOIN tbl_inventario B ON A.id_producto = B.id WHERE A.id_venta = ${req.params.id}`;
     db.query(sql,(err, result) => {
         if(err) throw err;
         res.json(result);
