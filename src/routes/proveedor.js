@@ -24,7 +24,7 @@ async function validacionAñadirActualizar(proveedor, res) {
 
 //GET todos los proveedores
 router.get('/', (req, res) => {
-    const sql = 'SELECT * FROM tbl_proveedor';
+    const sql = 'SELECT * FROM tbl_proveedor WHERE estatus = 1';
     db.query(sql, (err, result) => {
         if(err) throw err;
         res.json(result);

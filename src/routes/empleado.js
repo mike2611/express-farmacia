@@ -24,7 +24,7 @@ async function validacionAñadirActualizar(empleado, res) {
 //GET todos los empleados
 router.get('/', (req, res) => {
     // let sql = 'SELECT * FROM tbl_empleado';
-    let sql = "SELECT A.id AS id, CONCAT(A.nombre, ' ', A.paterno, ' ', A.materno) AS nombre, B.descripcion AS perfil, A.usuario AS usuario FROM tbl_empleado A INNER JOIN tbl_perfil B ON A.id_perfil = B.id";
+    let sql = "SELECT A.id AS id, CONCAT(A.nombre, ' ', A.paterno, ' ', A.materno) AS nombre, B.descripcion AS perfil, A.usuario AS usuario FROM tbl_empleado A INNER JOIN tbl_perfil B ON A.id_perfil = B.id WHERE A.estatus = 1";
     db.query(sql, (err, results) => {
         if(err) throw err;
         res.json(results);
@@ -77,7 +77,7 @@ router.post('/', async (req,res) => {
 router.put('/:id', async (req, res) => {
     let updateEmpleado = req.body;
 
-    if (!await validacionAñadirActualizar(updateEmpleado, res)) return;
+    // if (!await validacionAñadirActualizar(updateEmpleado, res)) return;
     
     let sql = 'UPDATE tbl_empleado SET ? WHERE id = ?';
     db.query(sql, [updateEmpleado, req.params.id], (err, result) => {
