@@ -5,6 +5,7 @@ const db = require('../database');
 // Obtener registros de modificaciones
 router.get('/', async (req, res) => {
   try {
+    await vaciarTablaRegistro();
     await registrarModificacionesAdmins();
     const registros = await obtenerRegistrosModificaciones();
     res.json(registros);
@@ -20,6 +21,13 @@ async function obtenerRegistrosModificaciones() {
   const [result] = await db.promise().query(sql);
   return result;
 }
+
+//Vaciar Tabla
+async function vaciarTablaRegistro() {
+  const deleteSql = 'DELETE FROM tbl_registro_modificaciones';
+  await db.promise().query(deleteSql);
+}
+
 
 // Función para registrar una modificación
 async function registrarModificacion(idAdmin, tablaModificada, tipoModificacion, nombreModificacion) {
