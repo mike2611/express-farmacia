@@ -7,6 +7,7 @@ const contrato = require('./contrato');
 const pais = require('./pais');
 const estado = require('./estado');
 const municipio = require('./municipio');
+const registro = require('./registro');
 
 module.exports = {
     empleado,
@@ -17,5 +18,6 @@ module.exports = {
     contrato,
     pais,
     estado,
-    municipio
+    municipio,
+    registro
 };

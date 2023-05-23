@@ -15,6 +15,7 @@ app.use('/contratos', routes.contrato);
 app.use('/paises', routes.pais);
 app.use('/estados', routes.estado);
 app.use('/municipios', routes.municipio);
+app.use('/registro', routes.registro);
 
 const port = 3000;
 
