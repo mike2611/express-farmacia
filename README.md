@@ -1,9 +1,13 @@
 # FarmaFácil(BackEnd)
 
-> Este es el back del proyecto para fármacia de la clase bases de datos y lenguajes
+> Este proyecto presenta un sistema de gestión integral para farmacias, desarrollado para optimizar el control de inventario, ventas, reportes y gestión de usuarios.
+> Registro, actualización y seguimiento de productos, vencimientos, precios y proveedores.
+> Creación de perfiles de usuario con diferentes permisos y accesos al sistema
+> Procesamiento de ventas con actualización automática del inventario
+> Generación de informes personalizados
 
 # FarmaFácil(FrontEnd)
-[Click For Live Demo Link](https://github.com/mike2611/vue-farmacia)
+[Click for FrontEnd Repository](https://github.com/mike2611/vue-farmacia)
 
 ## Se hizo con
 
